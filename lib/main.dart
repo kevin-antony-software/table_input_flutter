@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/table_row.dart';
+import 'package:flutter_login/top_row.dart';
 
-import 'home.dart';
-
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: Colors.green,
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Scoreboard'),
         ),
-        primarySwatch: Colors.blue,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TopRow(),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: 35,
+                itemBuilder: (context, index) {
+                  return TableRow1(index: index);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
